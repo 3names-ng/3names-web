@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* React Native-style full-screen root: every screen is a flex:1 View. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overscroll-behavior: none;
+}
+
+body {
+  font-family: Montserrat, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Phone-width column on desktop (MAX_APP_WIDTH in shims/app-frame.ts).
+   transform makes it the containing block for position:fixed children
+   (tab bar, overlays) so they stay inside the column. */
+#root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 480px;
+  height: 100vh;
+  height: 100dvh;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  transform: translateZ(0);
+}
+
+@media (min-width: 481px) {
+  html {
+    background: #e9e7f2;
+  }
+  #root {
+    box-shadow: 0 0 40px rgba(17, 12, 46, 0.12);
+  }
+}
+
+@media (min-width: 481px) and (prefers-color-scheme: dark) {
+  html {
+    background: #0b0b10;
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "jsxImportSource": "nativewind",
+    "incremental": true,
+    "moduleSuffixes": [
+      ".web",
+      ""
+    ],
+    "types": [
+      "nativewind/types"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "expo-router": [
+        "./shims/expo-router.tsx"
+      ],
+      "expo-router/react-navigation": [
+        "./shims/expo-router-navigation.tsx"
+      ],
+      "expo": [
+        "./shims/expo.ts"
+      ],
+      "expo-audio": [
+        "./shims/expo-audio.ts"
+      ],
+      "expo-camera": [
+        "./shims/expo-camera.tsx"
+      ],
+      "expo-constants": [
+        "./shims/expo-constants.ts"
+      ],
+      "expo-device": [
+        "./shims/expo-device.ts"
+      ],
+      "expo-document-picker": [
+        "./shims/expo-document-picker.ts"
+      ],
+      "expo-file-system": [
+        "./shims/expo-file-system.ts"
+      ],
+      "expo-font": [
+        "./shims/expo-font.ts"
+      ],
+      "expo-image": [
+        "./shims/expo-image.tsx"
+      ],
+      "expo-image-picker": [
+        "./shims/expo-image-picker.ts"
+      ],
+      "expo-linear-gradient": [
+        "./shims/expo-linear-gradient.tsx"
+      ],
+      "expo-notifications": [
+        "./shims/expo-notifications.ts"
+      ],
+      "expo-screen-capture": [
+        "./shims/expo-screen-capture.ts"
+      ],
+      "expo-secure-store": [
+        "./shims/expo-secure-store.ts"
+      ],
+      "expo-splash-screen": [
+        "./shims/expo-splash-screen.ts"
+      ],
+      "expo-status-bar": [
+        "./shims/expo-status-bar.tsx"
+      ],
+      "expo-task-manager": [
+        "./shims/expo-task-manager.ts"
+      ],
+      "expo-video": [
+        "./shims/expo-video.tsx"
+      ],
+      "expo-video-thumbnails": [
+        "./shims/expo-video-thumbnails.ts"
+      ],
+      "expo-web-browser": [
+        "./shims/expo-web-browser.ts"
+      ],
+      "expo-router/*": [
+        "./shims/expo-router.tsx"
+      ],
+      "@expo/vector-icons": [
+        "./shims/vector-icons/index.tsx"
+      ],
+      "@expo/vector-icons/*": [
+        "./shims/vector-icons/*"
+      ],
+      "react-native-safe-area-context": [
+        "./shims/react-native-safe-area-context.tsx"
+      ],
+      "react-native-gesture-handler": [
+        "./shims/react-native-gesture-handler.tsx"
+      ],
+      "react-native-reanimated": [
+        "./shims/react-native-reanimated.ts"
+      ],
+      "react-native-webview": [
+        "./shims/react-native-webview.tsx"
+      ],
+      "react-native-purchases": [
+        "./shims/react-native-purchases.ts"
+      ],
+      "react-native-compressor": [
+        "./shims/empty.ts"
+      ],
+      "@react-native-async-storage/async-storage": [
+        "./shims/async-storage.ts"
+      ],
+      "@react-native-community/datetimepicker": [
+        "./shims/datetimepicker.tsx"
+      ],
+      "@react-native-google-signin/google-signin": [
+        "./shims/google-signin.ts"
+      ],
+      "@sentry/react-native": [
+        "./shims/sentry.ts"
+      ],
+      "lucide-react-native": [
+        "./shims/lucide-react-native.ts"
+      ],
+      "react-native-svg": [
+        "./shims/react-native-svg.tsx"
+      ],
+      "expo-media-library": [
+        "./shims/expo-media-library.ts"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "nativewind-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next",
+    "components/camera/cameraBackend.ts",
+    "components/camera/filterCamera.tsx",
+    "components/camera/filteredImage.tsx",
+    "components/camera/filteredVideoPreview.tsx",
+    "components/camera/filterShader.ts",
+    "components/camera/filterStrip.tsx",
+    "utils/bakePhotoFilter.ts",
+    "utils/compressMedia.ts"
+  ]
+}

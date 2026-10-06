@@ -1,0 +1,137 @@
+npm warn cleanup Failed to remove some directories [
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\C:\\Users\\user\\Documents\\3names-web\\node_modules\\react-native',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir 'C:\Users\user\Documents\3names-web\node_modules\react-native\Libraries\PushNotificationIOS'] {
+npm warn cleanup       errno: -4051,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\user\\Documents\\3names-web\\node_modules\\react-native\\Libraries\\PushNotificationIOS'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'C:\\Users\\user\\Documents\\3names-web\\node_modules\\react-native',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir 'C:\Users\user\Documents\3names-web\node_modules\react-native\Libraries\PushNotificationIOS'] {
+npm warn cleanup       errno: -4051,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\user\\Documents\\3names-web\\node_modules\\react-native\\Libraries\\PushNotificationIOS'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\C:\\Users\\user\\Documents\\3names-web\\node_modules\\date-fns',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir 'C:\Users\user\Documents\3names-web\node_modules\date-fns\fp'] {
+npm warn cleanup       errno: -4051,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\user\\Documents\\3names-web\\node_modules\\date-fns\\fp'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'C:\\Users\\user\\Documents\\3names-web\\node_modules\\date-fns',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir 'C:\Users\user\Documents\3names-web\node_modules\date-fns\fp'] {
+npm warn cleanup       errno: -4051,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\user\\Documents\\3names-web\\node_modules\\date-fns\\fp'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\C:\\Users\\user\\Documents\\3names-web\\node_modules\\lucide-react',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir 'C:\Users\user\Documents\3names-web\node_modules\lucide-react\dist\esm\icons'] {
+npm warn cleanup       errno: -4051,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\user\\Documents\\3names-web\\node_modules\\lucide-react\\dist\\esm\\icons'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'C:\\Users\\user\\Documents\\3names-web\\node_modules\\lucide-react',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir 'C:\Users\user\Documents\3names-web\node_modules\lucide-react\dist\esm\icons'] {
+npm warn cleanup       errno: -4051,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\user\\Documents\\3names-web\\node_modules\\lucide-react\\dist\\esm\\icons'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\C:\\Users\\user\\Documents\\3names-web\\node_modules\\nativewind',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir 'C:\Users\user\Documents\3names-web\node_modules\nativewind\node_modules\semver'] {
+npm warn cleanup       errno: -4048,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\user\\Documents\\3names-web\\node_modules\\nativewind\\node_modules\\semver'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\C:\\Users\\user\\Documents\\3names-web\\node_modules\\zod',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir 'C:\Users\user\Documents\3names-web\node_modules\zod\src\v4\classic'] {
+npm warn cleanup       errno: -4048,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\user\\Documents\\3names-web\\node_modules\\zod\\src\\v4\\classic'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\C:\\Users\\user\\Documents\\3names-web\\node_modules\\next',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir 'C:\Users\user\Documents\3names-web\node_modules\next\dist\compiled'] {
+npm warn cleanup       errno: -4051,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\user\\Documents\\3names-web\\node_modules\\next\\dist\\compiled'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'C:\\Users\\user\\Documents\\3names-web\\node_modules\\next',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir 'C:\Users\user\Documents\3names-web\node_modules\next\dist\compiled'] {
+npm warn cleanup       errno: -4051,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\user\\Documents\\3names-web\\node_modules\\next\\dist\\compiled'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\C:\\Users\\user\\Documents\\3names-web\\node_modules\\@react-native\\gradle-plugin',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir 'C:\Users\user\Documents\3names-web\node_modules\@react-native\gradle-plugin'] {
+npm warn cleanup       errno: -4048,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\user\\Documents\\3names-web\\node_modules\\@react-native\\gradle-plugin'
+npm warn cleanup     }
+npm warn cleanup   ]
+npm warn cleanup ]
+npm error code ENOTEMPTY
+npm error syscall rmdir
+npm error path C:\Users\user\Documents\3names-web\node_modules\react-native\ReactCommon\react\renderer\components
+npm error errno -4051
+npm error ENOTEMPTY: directory not empty, rmdir 'C:\Users\user\Documents\3names-web\node_modules\react-native\ReactCommon\react\renderer\components'
+npm error A complete log of this run can be found in: C:\npmcache\_logs\2026-10-06T16_35_51_482Z-debug-0.log
+     syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\user\\Documents\\3names-web\\node_modules\\react-native\\ReactCommon\\react\\renderer\\css'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'C:\\Users\\user\\Documents\\3names-web\\node_modules\\react-native',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir 'C:\Users\user\Documents\3names-web\node_modules\react-native\ReactCommon\react\renderer\css'] {
+npm warn cleanup       errno: -4051,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\user\\Documents\\3names-web\\node_modules\\react-native\\ReactCommon\\react\\renderer\\css'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\C:\\Users\\user\\Documents\\3names-web\\node_modules\\react-native-web\\node_modules',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir 'C:\Users\user\Documents\3names-web\node_modules\react-native-web\node_modules\@babel\runtime'] {
+npm warn cleanup       errno: -4048,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\user\\Documents\\3names-web\\node_modules\\react-native-web\\node_modules\\@babel\\runtime'
+npm warn cleanup     }
+npm warn cleanup   ]
+npm warn cleanup ]
+npm error code ENOTEMPTY
+npm error syscall rmdir
+npm error path C:\Users\user\Documents\3names-web\node_modules\@react-native\debugger-frontend\dist\third-party\front_end\Images
+npm error errno -4051
+npm error ENOTEMPTY: directory not empty, rmdir 'C:\Users\user\Documents\3names-web\node_modules\@react-native\debugger-frontend\dist\third-party\front_end\Images'
+npm error A complete log of this run can be found in: C:\npmcache\_logs\2026-10-06T16_18_55_192Z-debug-0.log
+EXIT:127
