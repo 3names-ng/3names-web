@@ -6,7 +6,7 @@ const path = require("path");
 const shim = (name) => path.join(__dirname, "shims", name);
 
 const alias = {
-  "react-native$": "react-native-web",
+  "react-native$": shim("react-native.ts"),
   "expo-router/react-navigation": shim("expo-router-navigation.tsx"),
   "expo-router$": shim("expo-router.tsx"),
   expo$: shim("expo.ts"),
@@ -73,6 +73,8 @@ function excludeAssetsFromNextImageLoader(rules) {
 
 const nextConfig = {
   reactStrictMode: false,
+  // Dev-only badge; bottom-left would sit on the mobile tab bar.
+  devIndicators: { position: "top-right" },
   env: expoPublicEnv,
   transpilePackages: [
     "nativewind",

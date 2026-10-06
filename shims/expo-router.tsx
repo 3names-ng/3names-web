@@ -172,6 +172,7 @@ export function usePathname(): string {
 // Alias import (avoid shadowing above)
 import { usePathname as useNextPathname } from "next/navigation";
 import { StyleSheet } from "react-native";
+import { WebTabNavigation, type WebTabItem } from "./web-tab-navigation";
 
 /* ------------------------------------------------------------------ */
 /* useFocusEffect: re-run when the callback identity or route changes  */
@@ -315,106 +316,28 @@ function TabsImpl({
 
   const go = (name: string) => next.push(hrefFor(name));
 
+  const items: WebTabItem[] = configs.map((cfg) => ({
+    name: cfg.name,
+    title: cfg.title,
+    icon: cfg.icon,
+    badge: cfg.badge,
+    isCreate: !!cfg.customButton,
+  }));
+  const background =
+    (opts.tabBarStyle?.backgroundColor as string | undefined) ?? (isDark() ? "#171717" : "#FFFFFF");
+
   return (
     <>
       {content}
       {!hidden && isGroupTabPath(pathname) && (
-        <div
-          style={{
-            position: "fixed",
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: 50,
-            display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "space-around",
-            height: 82,
-            paddingBottom: 14,
-            paddingTop: 8,
-            background: isDark() ? "#171717" : "#FFFFFF",
-            borderTopLeftRadius: 25,
-            borderTopRightRadius: 25,
-            boxShadow: "0 -4px 16px rgba(0,0,0,0.12)",
-            ...(opts.tabBarStyle as Record<string, string | number>),
-          }}
-        >
-          {configs.map((cfg) => {
-            const active = isActive(cfg.name);
-            const color = active ? activeColor : inactiveColor;
-
-            if (cfg.customButton) {
-              const CustomButton = cfg.customButton as ComponentType<{ onPress?: () => void }>;
-              return (
-                <div key={cfg.name} style={{ position: "relative", top: -25 }}>
-                  <CustomButton onPress={() => go(cfg.name)} />
-                </div>
-              );
-            }
-
-            return (
-              <button
-                key={cfg.name}
-                type="button"
-                onClick={() => go(cfg.name)}
-                aria-label={cfg.title || cfg.name}
-                style={{
-                  position: "relative",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: 4,
-                  minWidth: 56,
-                  background: "transparent",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: 0,
-                }}
-              >
-                {cfg.icon ? (
-                  <span style={{ display: "flex" }}>
-                    {cfg.icon({ color, size: 24, focused: active })}
-                  </span>
-                ) : null}
-                {opts.tabBarShowLabel !== false && cfg.title ? (
-                  <span
-                    style={{
-                      fontSize: 11,
-                      fontWeight: 600,
-                      color,
-                      marginBottom: 4,
-                      fontFamily: "inherit",
-                      ...(opts.tabBarLabelStyle as Record<string, string | number>),
-                    }}
-                  >
-                    {cfg.title}
-                  </span>
-                ) : null}
-                {cfg.badge ? (
-                  <span
-                    style={{
-                      position: "absolute",
-                      top: -4,
-                      right: 6,
-                      background: "#FF3B30",
-                      color: "#fff",
-                      fontSize: 10,
-                      lineHeight: "14px",
-                      minWidth: 16,
-                      height: 16,
-                      borderRadius: 8,
-                      textAlign: "center",
-                      padding: "0 4px",
-                      fontWeight: 700,
-                    }}
-                  >
-                    {cfg.badge}
-                  </span>
-                ) : null}
-              </button>
-            );
-          })}
-        </div>
+        <WebTabNavigation
+          items={items}
+          isActive={isActive}
+          onSelect={go}
+          activeColor={activeColor}
+          inactiveColor={inactiveColor}
+          background={background}
+        />
       )}
     </>
   );
