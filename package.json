@@ -1,0 +1,42 @@
+{
+  "name": "3names-web",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "predev": "node scripts/generate-next-pages.mjs",
+    "dev": "next dev",
+    "prebuild": "node scripts/generate-next-pages.mjs",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "generate": "node scripts/generate-next-pages.mjs"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^15.0.3",
+    "@hookform/resolvers": "^5.4.0",
+    "axios": "^1.18.1",
+    "date-fns": "^4.4.0",
+    "lucide-react": "^0.544.0",
+    "next": "15.5.27",
+    "nativewind": "^4.2.7",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-hook-form": "^7.81.0",
+    "react-native": "0.86.3",
+    "react-native-css-interop": "0.2.6",
+    "react-native-element-dropdown": "^2.12.4",
+    "react-native-web": "^0.21.3",
+    "socket.io-client": "^4.8.3",
+    "tailwindcss": "^3.4.19",
+    "zod": "^4.4.3",
+    "zustand": "^5.0.14"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "~19.2.4",
+    "@types/react-dom": "~19.2.2",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "typescript": "~5.9.3"
+  }
+}
