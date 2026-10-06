@@ -5,11 +5,18 @@ import { useAuthStore } from "@/store/authStore";
 import { syncServerClock } from "@/service/helper";
 import { showError } from "@/components/ui/toast";
 
+// ngrok's free tunnels answer browser requests with an HTML warning page
+// (ERR_NGROK_6024) instead of the API unless this header is present.
+const NGROK_HEADERS: Record<string, string> = ENV.API_URL.includes("ngrok")
+  ? { "ngrok-skip-browser-warning": "true" }
+  : {};
+
 export const api = axios.create({
   baseURL: ENV.API_URL,
   timeout: 15000,
   headers: {
     "Content-Type": "application/json",
+    ...NGROK_HEADERS,
   },
 });
 
@@ -38,7 +45,7 @@ function refreshAccessToken(): Promise<string | null> {
         const res = await axios.post(
           `${ENV.API_URL}/auth/refresh`,
           { refreshToken },
-          { timeout: 15000 }
+          { timeout: 15000, headers: NGROK_HEADERS }
         );
         const data = res.data?.data ?? res.data;
         const accessToken: string | undefined = data?.accessToken ?? data?.token;
