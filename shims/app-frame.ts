@@ -6,8 +6,8 @@
 // module evaluates.
 import { Dimensions } from "react-native";
 
-/** Keep in sync with #root max-width in global.css. */
-export const MAX_APP_WIDTH = 480;
+/** Keep in sync with --app-col in global.css. */
+export const MAX_APP_WIDTH = 600;
 
 type DimName = "window" | "screen";
 type Dims = { width: number; height: number; scale: number; fontScale: number };

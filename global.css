@@ -14,14 +14,32 @@ body {
   font-family: Montserrat, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
-/* Phone-width column on desktop (MAX_APP_WIDTH in shims/app-frame.ts).
-   transform makes it the containing block for position:fixed children
-   (tab bar, overlays) so they stay inside the column. */
+/* ------------------------------------------------------------------ */
+/* App column                                                          */
+/* ------------------------------------------------------------------ */
+
+/* The screens are phone layouts, so they render in a centered column up to
+   --app-col wide (MAX_APP_WIDTH in shims/app-frame.ts — keep in sync).
+   transform makes it the containing block for position:fixed children so
+   overlays stay inside the column. On tab pages at >= 768px the column moves
+   right to sit beside the sidebar (body.has-sidebar, set by the tab nav). */
+:root {
+  --app-col: 600px;
+  --sidebar-w: 0px;
+  --tn-border: rgba(17, 12, 46, 0.08);
+  --tn-hover: rgba(108, 62, 244, 0.08);
+}
+
+html.dark {
+  --tn-border: rgba(255, 255, 255, 0.08);
+  --tn-hover: rgba(108, 62, 244, 0.18);
+}
+
 #root {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 480px;
+  max-width: var(--app-col);
   height: 100vh;
   height: 100dvh;
   margin: 0 auto;
@@ -30,17 +48,238 @@ body {
   transform: translateZ(0);
 }
 
-@media (min-width: 481px) {
+@media (min-width: 601px) {
   html {
-    background: #e9e7f2;
+    background: #f4f3f9;
+  }
+  html.dark {
+    background: #0b0b10;
   }
   #root {
-    box-shadow: 0 0 40px rgba(17, 12, 46, 0.12);
+    border-left: 1px solid var(--tn-border);
+    border-right: 1px solid var(--tn-border);
   }
 }
 
-@media (min-width: 481px) and (prefers-color-scheme: dark) {
-  html {
-    background: #0b0b10;
+@media (min-width: 768px) {
+  body.has-sidebar {
+    --sidebar-w: 84px;
+  }
+  body.has-sidebar #root {
+    /* Centered in the space right of the sidebar. */
+    margin-left: max(var(--sidebar-w), calc(var(--sidebar-w) + (100vw - var(--sidebar-w) - var(--app-col)) / 2));
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  body.has-sidebar {
+    --sidebar-w: 260px;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Tab navigation (shims/web-tab-navigation.tsx)                       */
+/* ------------------------------------------------------------------ */
+
+.tn-bar,
+.tn-side {
+  font-family: Montserrat, system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+/* :where() keeps this reset at element specificity so the item rules win. */
+:where(.tn-bar, .tn-side) button {
+  font: inherit;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tn-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tn-badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: #ff3b30;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.tn-create {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 32px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(108, 62, 244, 0.35);
+  transition: transform 0.15s ease;
+}
+
+.tn-create-sm {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+/* Bottom bar: narrow screens, inside the app column. */
+.tn-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  align-items: stretch;
+  height: calc(56px + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  border-top: 1px solid var(--tn-border);
+}
+
+.tn-bar-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-width: 0;
+}
+
+.tn-bar-item:hover .tn-create {
+  transform: scale(1.05);
+}
+
+/* Same slot height for every icon (the profile avatar is taller). */
+.tn-bar .tn-icon {
+  height: 26px;
+}
+
+.tn-bar-label {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.tn-bar-item:focus-visible,
+.tn-side-item:focus-visible,
+.tn-brand:focus-visible {
+  outline: 2px solid #6c3ef4;
+  outline-offset: -2px;
+  border-radius: 10px;
+}
+
+/* Sidebar: wide screens, fixed to the left edge of the viewport. */
+.tn-side {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .tn-bar {
+    display: none;
+  }
+
+  .tn-side {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 40;
+    width: var(--sidebar-w);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 16px 12px;
+    border-right: 1px solid var(--tn-border);
+  }
+
+  .tn-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px;
+    margin-bottom: 20px;
+  }
+
+  .tn-brand img {
+    border-radius: 10px;
+    display: block;
+  }
+
+  .tn-side-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    transition: background-color 0.15s ease;
+  }
+
+  .tn-side-item:hover {
+    background: var(--tn-hover);
+  }
+
+  .tn-side-item.is-active {
+    background: var(--tn-hover);
+    font-weight: 700;
+  }
+
+  .tn-label {
+    display: none;
+  }
+}
+
+/* Wide desktop: labelled sidebar. */
+@media (min-width: 1200px) {
+  .tn-side {
+    align-items: stretch;
+    padding: 20px 16px;
+  }
+
+  .tn-brand {
+    padding: 6px 12px;
+  }
+
+  .tn-side-item {
+    justify-content: flex-start;
+    width: auto;
+    height: 48px;
+    padding: 0 14px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .tn-label {
+    display: inline;
+  }
+
+  .tn-wordmark {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #6c3ef4;
   }
 }

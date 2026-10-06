@@ -10,3 +10,8 @@ declare module "*.wav" { const url: string; export default url; }
 declare module "*.mp4" { const url: string; export default url; }
 
 declare const __DEV__: boolean;
+
+// react-native-web implements the react-native API (used by shims/react-native.ts).
+declare module "react-native-web" {
+  export * from "react-native";
+}
