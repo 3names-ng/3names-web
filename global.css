@@ -289,3 +289,17 @@ html.dark {
     color: #6c3ef4;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* ScrollView content (shims/react-native.ts)                          */
+/* ------------------------------------------------------------------ */
+
+/* Match React Native: a ScrollView's children never shrink below their
+   content, even with flex: 1 (react-native-web sets min-height: 0). */
+[data-rn-scroll="v"] > div > * {
+  min-height: auto;
+}
+
+[data-rn-scroll="h"] > div > * {
+  min-width: auto;
+}
