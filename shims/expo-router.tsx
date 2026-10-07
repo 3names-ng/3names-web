@@ -219,27 +219,33 @@ export const Stack = Object.assign(StackImpl, { Screen: StackScreen });
 
 /* --- Tab bar visibility (set by standalone <Tabs.Screen> usage) ----- */
 
-let tabHidden = false;
-const tabListeners = new Set<(hidden: boolean) => void>();
-
-function setTabBarHidden(hidden: boolean) {
-  if (tabHidden === hidden) return;
-  tabHidden = hidden;
-  tabListeners.forEach((l) => l(hidden));
+function createFlag() {
+  let value = false;
+  const listeners = new Set<(v: boolean) => void>();
+  const set = (next: boolean) => {
+    if (value === next) return;
+    value = next;
+    listeners.forEach((l) => l(next));
+  };
+  const useFlag = (): boolean => {
+    const [v, setV] = useState(value);
+    useEffect(() => {
+      listeners.add(setV);
+      setV(value);
+      return () => {
+        listeners.delete(setV);
+      };
+    }, []);
+    return v;
+  };
+  return [set, useFlag] as const;
 }
 
-function useTabBarHidden(): boolean {
-  const [hidden, setHidden] = useState(tabHidden);
-  useEffect(() => {
-    const l = (h: boolean) => setHidden(h);
-    tabListeners.add(l);
-    setHidden(tabHidden);
-    return () => {
-      tabListeners.delete(l);
-    };
-  }, []);
-  return hidden;
-}
+// Removed entirely (camera / create screens render a standalone <Tabs.Screen>).
+const [setTabBarHidden, useTabBarHidden] = createFlag();
+// Slid out of view while scrolling (a tab screen calls
+// navigation.setOptions({ tabBarStyle: { display: "none" | "flex" } })).
+const [setTabBarCollapsed, useTabBarCollapsed] = createFlag();
 
 /** Standalone use (inside a screen): hides the tab bar while mounted. */
 export function TabsScreenStandalone(props: ScreenComponentProps) {
@@ -277,6 +283,8 @@ function TabsImpl({
   const content = useContext(RouteContent);
   const pathname = useNextPathname();
   const hidden = useTabBarHidden();
+  const collapsed = useTabBarCollapsed();
+  useEffect(() => setTabBarCollapsed(false), [pathname]);
   const next = useNextRouter();
 
   const configs = useMemo<TabConfig[]>(() => {
@@ -337,6 +345,7 @@ function TabsImpl({
           activeColor={activeColor}
           inactiveColor={inactiveColor}
           background={background}
+          collapsed={collapsed}
         />
       )}
     </>
@@ -422,6 +431,8 @@ export function useNavigation() {
     () => ({
       setOptions: (opts: Record<string, unknown>) => {
         optionsRef.current = { ...optionsRef.current, ...opts };
+        const tabBarStyle = opts.tabBarStyle as { display?: string } | undefined;
+        if (tabBarStyle && "display" in tabBarStyle) setTabBarCollapsed(tabBarStyle.display === "none");
       },
       getOptions: () => optionsRef.current,
       isFocused: () => true,

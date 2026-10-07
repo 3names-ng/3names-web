@@ -26,6 +26,8 @@ type Props = {
   activeColor: string;
   inactiveColor: string;
   background: string;
+  /** Bottom bar slid out of view (home feed scrolling down). The sidebar stays. */
+  collapsed?: boolean;
 };
 
 const ACCENT = "#6C3EF4";
@@ -46,7 +48,7 @@ function label(item: WebTabItem) {
   return item.isCreate ? "Create" : item.title || item.name;
 }
 
-export function WebTabNavigation({ items, isActive, onSelect, activeColor, inactiveColor, background }: Props) {
+export function WebTabNavigation({ items, isActive, onSelect, activeColor, inactiveColor, background, collapsed }: Props) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
@@ -55,7 +57,7 @@ export function WebTabNavigation({ items, isActive, onSelect, activeColor, inact
   }, []);
 
   const bar = (
-    <nav className="tn-bar" style={{ background }} aria-label="Main">
+    <nav className={"tn-bar" + (collapsed ? " is-collapsed" : "")} style={{ background }} aria-label="Main">
       {items.map((item) => {
         const active = isActive(item.name);
         const color = active ? activeColor : inactiveColor;
